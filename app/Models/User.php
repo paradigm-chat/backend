@@ -42,4 +42,24 @@ class User extends Authenticatable
     protected $casts = [
 
     ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | FUNCTIONS
+    |--------------------------------------------------------------------------
+    */
+    public function otpExists()
+    {
+        return $this->otpTokens()->where('expires_at', '>', now())->exists();
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | RELATIONS
+    |--------------------------------------------------------------------------
+    */
+    public function otpTokens()
+    {
+        return $this->hasMany(OtpToken::class, 'user_id', 'id');
+    }
 }
