@@ -26,4 +26,7 @@ Route::group([
 ], function () {
     Route::post('auth/login', [\App\Http\Controllers\Api\V1\Auth\LoginController::class, 'login'])
         ->name('auth.login');
+
+    Route::post('auth/verify', [\App\Http\Controllers\Api\V1\Auth\LoginController::class, 'verify'])
+        ->name('auth.verify');
 });
